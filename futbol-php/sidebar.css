@@ -1,0 +1,110 @@
+/* Layout con sidebar */
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+    margin: -20px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: linear-gradient(180deg, #1e3a5f 0%, #2c5f8d 100%);
+    color: white;
+    padding: 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 1.8em;
+    color: white;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.sidebar-menu li {
+    margin: 0;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    padding: 18px 25px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s;
+    border-left: 4px solid transparent;
+}
+
+.sidebar-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-left-color: #4CAF50;
+}
+
+.sidebar-menu a.active {
+    background: rgba(255, 255, 255, 0.15);
+    border-left-color: #4CAF50;
+}
+
+.sidebar-icon {
+    font-size: 1.5em;
+    margin-right: 15px;
+    min-width: 30px;
+}
+
+/* Contenido principal */
+.main-content {
+    margin-left: 250px;
+    flex: 1;
+    padding: 40px;
+    width: calc(100% - 250px);
+}
+
+/* Ajustes al container */
+.main-content .container {
+    max-width: 100%;
+    margin: 0;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 70px;
+    }
+    
+    .main-content {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+    }
+    
+    .sidebar-header h2,
+    .sidebar-menu a span:not(.sidebar-icon) {
+        display: none;
+    }
+    
+    .sidebar-menu a {
+        justify-content: center;
+        padding: 18px 10px;
+    }
+    
+    .sidebar-icon {
+        margin-right: 0;
+    }
+}
