@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # Servidor Web (Apache + PHP)
+  web:
+    build: .
+    container_name: futbol-web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - futbol-network
+
+  # Base de datos (MySQL)
+  db:
+    image: mysql:8.0
+    container_name: futbol-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: futbol
+      MYSQL_USER: admin-futbol
+      MYSQL_PASSWORD: futbol123
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - futbol-network
+
+  # phpMyAdmin (opcional pero útil)
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: futbol-phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root123
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - futbol-network
+
+volumes:
+  db_data:
+
+networks:
+  futbol-network:

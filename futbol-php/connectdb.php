@@ -1,5 +1,5 @@
 <?php
-$host = "localhost";
+$host = "db";  // En Docker, el host es el nombre del servicio
 $usuario = "admin-futbol";
 $password = "futbol123";
 $bd = "futbol";
